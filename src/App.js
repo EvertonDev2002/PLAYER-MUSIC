@@ -1,25 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Api from "./api.jsx";
+import { useEffect, useState } from "react";
 
-function App() {
+export default function App() {
+  const [date, setData] = useState(1);
+  const [play, setPlay] = useState(false);
+  const[icon, setIcon] = useState("fa-play")
+  
+  const Play = () => {
+    const audio = document.querySelector("#audio");
+    if (play === false) {
+      audio.pause();
+      setIcon("fa-play")
+      setPlay(true);
+    } else {
+      audio.play();
+      setIcon("fa-pause")
+      setPlay(false);
+    }
+  };
+  useEffect(() => {
+    Api.get('list_song').then((response) => {
+      setData(response.data[1]);
+    });
+  }, []);
+  console.log(date)
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="center">
+      <div
+        className="background"
+        style={{ backgroundImage: `url(${date.albumcover})` }}
+      ></div>
+      audio
+      <div className="div-player">
+        <div
+          className="albumcover"
+          style={{ backgroundImage: `url(${date.albumcover})` }}
         >
-          Learn React
-        </a>
-      </header>
+          <p>{`${date.artist} - ${date.title_song} - ${date.title_album}`}</p>
+        </div>
+        <div className="controler">
+         {/*  <span className="icon fas fa-step-backward"></span> */}
+          <span className={ `icon play fas ${icon}`} onClick={() => Play()}></span>
+         {/*  <span className="icon fas fa-step-forward"></span> */}
+        </div>
+        <audio id="audio" src={date.file} preload="true"></audio>
+      </div>
     </div>
   );
 }
-
-export default App;
