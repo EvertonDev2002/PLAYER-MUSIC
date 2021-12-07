@@ -9,8 +9,8 @@ import Session from "./components/session/session";
 import Controls from "./components/controls/controls";
 export default function App() {
   const [date, setData] = useState(1);
-  const [play, setPlay] = useState(false);
-  const [icon, setIcon] = useState("fa-play");
+/*   const [play, setPlay] = useState(false);
+  const [icon, setIcon] = useState("fa-play"); */
   /*
   const Play = () => {
     const audio = document.querySelector("#audio");
