@@ -1,5 +1,3 @@
-export default function Search(){
-    return(
-        <input className="search" type="text"  placeholder="Pesquisar"/>
-    )
+export default function Search(props) {
+  return <input className="search" type="text" placeholder="Pesquisar" onChange={() => props.search()} />;
 }
