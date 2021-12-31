@@ -14,8 +14,8 @@ const Main = () => {
   const [search, setSearch] = useState("Agnes Obel");
   const Nav = useNavigate();
 
-  const SearchSong = () => {
-    setSearch();
+  const SearchSong = (ev) => {
+    setSearch(ev.target.value);
   };
 
   const Select = (fk) => {
@@ -24,9 +24,6 @@ const Main = () => {
   };
 
   useEffect(() => {
-    Api.get("list/song").then((response) => {
-      setSong(response.data);
-    });
     Api.get(`search/song/${search}`).then((response) => {
       setSong(response.data);
     });
@@ -71,6 +68,7 @@ const Main = () => {
         title={song[0]?.title_song}
         music={song[0]?.file}
         artist={song[0]?.artist}
+        id={song[0]?.id_song}
       />
     </>
   );
