@@ -3,7 +3,6 @@ import { useState } from "react";
 import Input from "../components/input/input";
 import Column from "../components/column/column";
 import Header from "../components/header/header";
-import Search from "../components/search/search";
 import Button from "../components/button/button";
 import Content from "../components/content/content";
 import Controls from "../components/controls/controls";
@@ -19,6 +18,7 @@ const Add = () => {
     title_song: "",
     duration: "",
   };
+
   const [values, setValues] = useState(initialValue);
   const [duration, setDuration] = useState();
 
@@ -32,6 +32,7 @@ const Add = () => {
   const Refresh = () => {
     window.location.reload();
   };
+
   const OnSubmit = (ev) => {
     setValues((values.duration = duration));
     console.log(values);
@@ -44,9 +45,7 @@ const Add = () => {
 
   return (
     <>
-      <Header>
-        <Search />
-      </Header>
+      <Header />
       <Content direction={"normal"}>
         <Column text={"Adicionar"}>
           <Input

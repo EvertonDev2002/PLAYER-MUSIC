@@ -13,8 +13,8 @@ const Player = () => {
   const [Selectsong, setSelectsong] = useState([]);
   const [search, setSearch] = useState(sessionStorage.getItem("fk"));
 
-  const SearchSong = () => {
-    setSearch();
+  const SearchSong = (ev) => {
+    setSearch(ev.target.value);
   };
   const Select = (track) => {
     setTrack(track);
