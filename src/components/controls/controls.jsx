@@ -1,6 +1,6 @@
+import "./controls.css";
 import { useState } from "react";
-
-export default function Controls(props) {
+const Controls = (props) => {
   const [play, setPlay] = useState(false);
   const [icon, setIcon] = useState("fa-play");
 
@@ -43,4 +43,6 @@ export default function Controls(props) {
       </div>
     </div>
   );
-}
+};
+
+export default Controls;

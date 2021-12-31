@@ -1,4 +1,5 @@
-export default function Session(props) {
+import "./session.css";
+const Session = (props) => {
   return (
     <div className="session">
       <div>
@@ -7,4 +8,5 @@ export default function Session(props) {
       <div className="session-card">{props.children}</div>
     </div>
   );
-}
+};
+export default Session;

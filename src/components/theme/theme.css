@@ -1,0 +1,23 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  line-height: 1;
+  list-style: none;
+  box-shadow: none;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+:root {
+  --color_01: #212426;
+  --color_02: #edecec;
+  --color_03: #ffffff;
+  --color_04: #1f2122;
+  --color_05: #e0dfdf;
+  --color_06: #227cf2;
+  --anton: "Anton", sans-serif;
+  --roboto: "Roboto", sans-serif;
+  --raleway: "Raleway", sans-serif;
+}

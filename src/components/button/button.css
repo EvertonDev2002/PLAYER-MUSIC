@@ -1,0 +1,13 @@
+@import url("../theme/theme.css");
+.button {
+  width: 20em;
+  margin: 1em;
+  height: 2.5em;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.8rem;
+  border-radius: 0.6em;
+  color: var(--color_02);
+  font-family: var(--raleway);
+  background-color: var(--color_06);
+}

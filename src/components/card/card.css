@@ -1,0 +1,32 @@
+@import url("../theme/theme.css");
+.card {
+  width: 10em;
+  margin: 1em;
+  height: 10em;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+.card > div {
+  width: 100%;
+  height: 100%;
+  border-radius: 1em;
+}
+.card > p {
+  font-weight: 900;
+  font-size: 1.3rem;
+  text-align: center;
+  position: absolute;
+  color: var(--color_03);
+  font-family: var(--raleway);
+}
+.bg {
+  background-color: var(--color_06);
+}
+.filter {
+  filter: blur(0.1em);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}

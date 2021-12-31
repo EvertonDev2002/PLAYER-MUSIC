@@ -1,0 +1,16 @@
+@import url("../theme/theme.css");
+.hearder {
+  height: 8vh;
+  width: 100vw;
+  display: flex;
+  padding: 2.2em;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color_01);
+}
+.hearder > span {
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--color_03);
+  font-family: var(--anton);
+}

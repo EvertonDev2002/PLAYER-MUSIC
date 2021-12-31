@@ -1,0 +1,7 @@
+@import url("../theme/theme.css");
+.input {
+  width: 20em;
+  margin: 1em;
+  height: 2.5em;
+  border-radius: 0.6em;
+}
