@@ -20,4 +20,5 @@
   overflow-y: auto;
   overflow-x: hidden;
   flex-direction: row;
+  align-items: center;
 }

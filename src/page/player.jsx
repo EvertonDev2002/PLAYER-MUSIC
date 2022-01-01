@@ -11,11 +11,12 @@ const Player = () => {
   const [song, setSong] = useState([]);
   const [track, setTrack] = useState();
   const [Selectsong, setSelectsong] = useState([]);
-  const [search, setSearch] = useState(sessionStorage.getItem("fk"));
+  const [search, setSearch] = useState(sessionStorage.getItem("search"));
 
   const SearchSong = (ev) => {
     setSearch(ev.target.value);
   };
+
   const Select = (track) => {
     setTrack(track);
   };
@@ -31,8 +32,6 @@ const Player = () => {
       setSelectsong(response.data);
     });
   }, [track]);
-
-  console.log(song);
 
   return (
     <>

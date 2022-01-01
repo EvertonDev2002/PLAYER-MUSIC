@@ -1,6 +1,7 @@
 import Api from "../config/api";
 import { useState } from "react";
 import Input from "../components/input/input";
+import initialValue from "../config/initialValue";
 import Column from "../components/column/column";
 import Header from "../components/header/header";
 import Button from "../components/button/button";
@@ -8,17 +9,6 @@ import Content from "../components/content/content";
 import Controls from "../components/controls/controls";
 import Albumcover from "../components/albumcover/albumcover";
 const Add = () => {
-  const initialValue = {
-    title_album: "",
-    albumcover: "",
-    artist: "",
-    genre: " ",
-    lyrics: "",
-    file: "",
-    title_song: "",
-    duration: "",
-  };
-
   const [values, setValues] = useState(initialValue);
   const [duration, setDuration] = useState();
 
@@ -35,7 +25,6 @@ const Add = () => {
 
   const OnSubmit = (ev) => {
     setValues((values.duration = duration));
-    console.log(values);
     ev.preventDefault();
     Api.post("create/song", values).then((response) => {
       alert(`Adicionado com sucesso!`);

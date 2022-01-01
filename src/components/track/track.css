@@ -1,1 +1,46 @@
 @import url("../theme/theme.css");
+.container-track {
+  width: 40vw;
+  height: 2em;
+  display: flex;
+  padding: 1.3em;
+  cursor: pointer;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: solid 1px var(--color_06);
+}
+.container-track > p {
+  font-size: 1rem;
+  text-align: center;
+  white-space: nowrap;
+  padding-right: 0.4em;
+  color: var(--color_02);
+  text-overflow: ellipsis;
+  font-family: var(--roboto);
+}
+.container-track > div {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  padding-left: 0.2em;
+  flex-direction: row;
+  align-items: center;
+}
+.container-track > div > p {
+  font-size: 1rem;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--color_02);
+  text-overflow: ellipsis;
+  font-family: var(--roboto);
+}
+.container-track > div > .photo {
+  width: 2em;
+  height: 2em;
+  margin-right: 0.5em;
+  border-radius: 0.3em;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

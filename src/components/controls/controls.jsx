@@ -1,6 +1,8 @@
 import "./controls.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const Controls = (props) => {
+  const Nav = useNavigate();
   const [play, setPlay] = useState(false);
   const [icon, setIcon] = useState("fa-play");
 
@@ -14,6 +16,12 @@ const Controls = (props) => {
       audio.play();
       setIcon("fa-pause");
       setPlay(false);
+    }
+  };
+
+  const OnClick = () => {
+    if (sessionStorage.getItem("search") != null) {
+      Nav("/player");
     }
   };
 
@@ -38,7 +46,7 @@ const Controls = (props) => {
             defaultValue="1"
           />
         </div>
-        <span className="icon fas fa-list-ul"></span>
+        <span className="icon fas fa-list-ul" onClick={() => OnClick()}></span>
         <audio preload="metadata" id="audio" src={props.music}></audio>
       </div>
     </div>
