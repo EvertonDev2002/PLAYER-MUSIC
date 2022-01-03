@@ -9,29 +9,70 @@ import Controls from "../components/controls/controls";
 import Albumcover from "../components/albumcover/albumcover";
 const Player = () => {
   const [song, setSong] = useState([]);
-  const [track, setTrack] = useState();
-  const [Selectsong, setSelectsong] = useState([]);
+  const [id, setId] = useState(Number);
+  const [album, setAlbum] = useState([]);
   const [search, setSearch] = useState(sessionStorage.getItem("search"));
+
+  /* console.log(sessionStorage.getItem("album")) */
 
   const SearchSong = (ev) => {
     setSearch(ev.target.value);
   };
 
-  const Select = (track) => {
-    setTrack(track);
+  const Select = (ID) => {
+    for (let i = 0; i < album.length; i++) {
+      if (ID === album[i].id_song) {
+        if (album[i] !== undefined) {
+          setId(album[i].id_song);
+          sessionStorage.setItem("search", album[i].title_song);
+          break;
+        }
+      }
+    }
+  };
+
+  const Prev = () => {
+    for (let i = 0; i < album.length; i++) {
+      if (id === album[i].id_song) {
+        const nextIndex = i - 1;
+
+        if (album[nextIndex] !== undefined) {
+          setId(album[nextIndex].id_song);
+          sessionStorage.setItem("search", album[nextIndex].title_song);
+          break;
+        }
+      }
+    }
+  };
+  const Next = () => {
+    for (let i = 0; i < album.length; i++) {
+      if (id === album[i].id_song) {
+        const nextIndex = i + 1;
+
+        if (album[nextIndex] !== undefined) {
+          setId(album[nextIndex].id_song);
+          sessionStorage.setItem("search", album[nextIndex].title_song);
+          break;
+        }
+      }
+    }
   };
 
   useEffect(() => {
     Api.get(`search/song/${search}`).then((response) => {
-      setSong(response.data);
+      setAlbum(response.data);
     });
   }, [search]);
 
+  /* console.log(album) */
+
   useEffect(() => {
-    Api.get(`search/song/${track}`).then((response) => {
-      setSelectsong(response.data);
-    });
-  }, [track]);
+    if (id !== undefined && id !== 0) {
+      Api.get(`list/song?id=${id}`).then((response) => {
+        setSong(response.data[0]);
+      });
+    }
+  }, [id]);
 
   return (
     <>
@@ -40,7 +81,7 @@ const Player = () => {
       </Header>
       <Content direction={"normal"}>
         <Column text={"Próximas"}>
-          {song?.map((list) => (
+          {album?.map((list) => (
             <Track
               key={list.id_song}
               id={list.id_song}
@@ -51,15 +92,14 @@ const Player = () => {
             />
           ))}
         </Column>
-        <Albumcover
-          bg={Selectsong[0]?.albumcover}
-          lyrics={Selectsong[0]?.lyrics}
-        />
+        <Albumcover bg={song[0]?.albumcover} lyrics={song[0]?.lyrics} />
       </Content>
       <Controls
-        title={Selectsong[0]?.title_song}
-        music={Selectsong[0]?.file}
-        artist={Selectsong[0]?.artist}
+        title={song[0]?.title_song}
+        music={song[0]?.file}
+        artist={song[0]?.artist}
+        next={Next}
+        prev={Prev}
       />
     </>
   );

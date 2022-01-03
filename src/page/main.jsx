@@ -28,10 +28,11 @@ const Main = () => {
     }
   };
 
-  const Select = (fk) => {
-    sessionStorage.setItem("search", fk);
+  const Select = (selected) => {
+    sessionStorage.setItem("search", selected);
     Nav("/player");
   };
+
   const OnClickArrowAlbum = () => {
     if (albumPage <= 1) {
       if (albumCount.count > 5) {
@@ -60,6 +61,8 @@ const Main = () => {
         if (arraySong[nextIndex] !== undefined) {
           setId(arraySong[nextIndex].id_song);
           sessionStorage.setItem("search", arraySong[nextIndex].title_song);
+          sessionStorage.setItem("album", arraySong[nextIndex].title_album);
+
           break;
         }
       }
@@ -73,6 +76,7 @@ const Main = () => {
         if (arraySong[nextIndex] !== undefined) {
           setId(arraySong[nextIndex].id_song);
           sessionStorage.setItem("search", arraySong[nextIndex].title_song);
+          sessionStorage.setItem("album", arraySong[nextIndex].title_album);
 
           break;
         }
@@ -144,6 +148,7 @@ const Main = () => {
         title={song[0]?.title_song}
         music={song[0]?.file}
         artist={song[0]?.artist}
+        album={song[0]?.title_album}
         next={Next}
         prev={Prev}
       />

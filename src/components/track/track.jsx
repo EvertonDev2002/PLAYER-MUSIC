@@ -11,7 +11,7 @@ const Track = (props) => {
     <div
       id={`e${props.id}`}
       className="container-track"
-      onClick={() => props.select(props.title)}
+      onClick={() => props.select(props.id)}
     >
       <div>
         <span

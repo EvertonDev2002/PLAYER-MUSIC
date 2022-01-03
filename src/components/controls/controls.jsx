@@ -22,6 +22,7 @@ const Controls = (props) => {
 
   const OnClick = () => {
     if (sessionStorage.getItem("search") != null) {
+      sessionStorage.setItem("search", props.album);
       Nav("/player");
     }
   };
@@ -32,11 +33,12 @@ const Controls = (props) => {
     if (ev === "mute" || volumeInput.value < 0.1) {
       if (ev) {
         if (volumeInput.value === "0") {
+          audio.volume = 1
           volumeInput.stepUp(10);
           setIconeVolume("fa-volume-up");
         } else {
+          audio.volume = 0
           volumeInput.stepDown(10);
-
           setIconeVolume("fa-volume-mute");
         }
       } else {
