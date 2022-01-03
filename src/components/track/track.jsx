@@ -1,11 +1,11 @@
 import "./track.css";
 const Track = (props) => {
   const Duration = (ev) => {
-    const date = new Date();
+    const date = new Date(null);
     date.setMinutes(ev);
     const durationMinutes = date.toISOString().substr(11, 5);
     return durationMinutes;
-  };
+  }; 
 
   return (
     <div

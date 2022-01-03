@@ -29,3 +29,9 @@
   color: var(--color_05);
   font-family: var(--roboto);
 }
+
+@media screen and (max-width: 800px) {
+  .container-albumcover {
+    display: none;
+  }
+}

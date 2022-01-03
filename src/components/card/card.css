@@ -1,17 +1,17 @@
 @import url("../theme/theme.css");
 .card {
   width: 10em;
-  margin: 1em;
   height: 10em;
   display: flex;
   cursor: pointer;
+  margin-right: 1em;
   align-items: center;
   justify-content: center;
 }
 .card > div {
   width: 100%;
   height: 100%;
-  border-radius: 1em;
+  border-radius: 1.2em;
 }
 .card > p {
   font-weight: 900;
@@ -29,4 +29,47 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 1020px) {
+  .card > p {
+    font-size: 0.7rem;
+  }
+  .card > div {
+    width: 100%;
+    height: 70%;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .card > p {
+    font-size: 0.9rem;
+  }
+  .card > div {
+    width: 100%;
+    height: 70%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .card {
+    width: 30em;
+    height: 14%;
+    padding-left: 4em;
+    padding-right: 4em;
+    position: relative;
+  }
+  .card div {
+    height: 5vh;
+    border-radius: 1em;
+  }
+  .card > p {
+    font-size: 0.8rem;
+  }
+  .filter {
+    background-size: cover;
+  }
+
+  .card > p {
+    font-size: 1.1rem;
+  }
 }

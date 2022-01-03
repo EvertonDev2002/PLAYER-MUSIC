@@ -44,3 +44,11 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+@media screen and (max-width: 800px) {
+  .container-track {
+    width: 90vw;
+  }
+  .container-track > div {
+    width: 100%;
+  }
+}

@@ -75,3 +75,20 @@
   -webkit-appearance: none;
   background-color: var(--color_03);
 }
+@media screen and (max-width: 800px) {
+  .sound {
+    bottom: 0;
+    height: 25vw;
+    position: fixed;
+  }
+  .title {
+    font-size: 0.5rem;
+  }
+  .sound {
+    display: flex;
+    flex-direction: column;
+  }
+  .controls > span {
+    font-size: 1.3rem;
+  }
+}

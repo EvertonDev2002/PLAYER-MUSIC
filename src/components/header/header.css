@@ -14,3 +14,9 @@
   color: var(--color_03);
   font-family: var(--anton);
 }
+
+@media screen and (max-width: 800px) {
+  .hearder > span {
+    font-size: 1.5rem;
+  }
+}
