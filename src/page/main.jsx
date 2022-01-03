@@ -11,19 +11,21 @@ import Controls from "../components/controls/controls";
 const Main = () => {
   const Nav = useNavigate();
   const [song, setSong] = useState([]);
-  const [track, setTrack] = useState();
+  const [id, setId] = useState(Number);
   const [album, setAlbum] = useState([]);
   const [genre, setGenre] = useState([]);
-  const [search, setSearch] = useState(sessionStorage.getItem("search"));
+  const [arraySong, SetArraySong] = useState([]);
   const [albumPage, setAlbumPage] = useState(1);
   const [genrePage, setGenrePage] = useState(1);
   const [albumCount, setAlbumCount] = useState(Number);
   const [genreCount, setGenreCount] = useState(Number);
+  const [search, setSearch] = useState(sessionStorage.getItem("search"));
 
   const SearchSong = (ev) => {
-    setSearch(ev.target.value);
-    sessionStorage.setItem("search", ev.target.value);
-    sessionStorage.setItem("id", track.id_song);
+    if (ev.target.value.length !== 0) {
+      setSearch(ev.target.value);
+      sessionStorage.setItem("search", ev.target.value);
+    }
   };
 
   const Select = (fk) => {
@@ -50,20 +52,60 @@ const Main = () => {
     }
   };
 
+  const Prev = () => {
+    for (let i = 0; i < arraySong.length; i++) {
+      if (id === arraySong[i].id_song) {
+        const nextIndex = i - 1;
+
+        if (arraySong[nextIndex] !== undefined) {
+          setId(arraySong[nextIndex].id_song);
+          sessionStorage.setItem("search", arraySong[nextIndex].title_song);
+          break;
+        }
+      }
+    }
+  };
+  const Next = () => {
+    for (let i = 0; i < arraySong.length; i++) {
+      if (id === arraySong[i].id_song) {
+        const nextIndex = i + 1;
+
+        if (arraySong[nextIndex] !== undefined) {
+          setId(arraySong[nextIndex].id_song);
+          sessionStorage.setItem("search", arraySong[nextIndex].title_song);
+
+          break;
+        }
+      }
+    }
+  };
+
   useEffect(() => {
-    Api.get(`search/song/${search}`).then((response) => {
-      setSong(response.data);
-      setTrack(response.data[0]);
-    });
     Api.get(`/list/album?page=${albumPage}`).then((response) => {
       setAlbum(response.data[0]);
       setAlbumCount(response.data[1]);
     });
+
     Api.get(`list/genre?page=${genrePage}`).then((response) => {
       setGenre(response.data[0]);
       setGenreCount(response.data[1]);
     });
-  }, [search, albumPage, genrePage]);
+  }, [albumPage, genrePage]);
+
+  useEffect(() => {
+    Api.get(`search/song/${search}`).then((response) => {
+      setId(response.data[0].id_song);
+    });
+  }, [search]);
+
+  useEffect(() => {
+    if (id !== undefined && id !== 0) {
+      Api.get(`list/song?id=${id}`).then((response) => {
+        setSong(response.data[0]);
+        SetArraySong(response.data[1]);
+      });
+    }
+  }, [id]);
 
   return (
     <>
@@ -102,6 +144,8 @@ const Main = () => {
         title={song[0]?.title_song}
         music={song[0]?.file}
         artist={song[0]?.artist}
+        next={Next}
+        prev={Prev}
       />
     </>
   );

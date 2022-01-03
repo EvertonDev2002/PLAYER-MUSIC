@@ -4,17 +4,18 @@ import { useNavigate } from "react-router-dom";
 const Controls = (props) => {
   const Nav = useNavigate();
   const [play, setPlay] = useState(false);
-  const [icon, setIcon] = useState("fa-play");
+  const [iconPlay, setIconPLay] = useState("fa-play");
+  const [iconVolume, setIconeVolume] = useState("fa-volume-up");
 
   const Play = () => {
     const audio = document.querySelector("#audio");
     if (play === false) {
       audio.pause();
-      setIcon("fa-play");
+      setIconPLay("fa-play");
       setPlay(true);
     } else {
       audio.play();
-      setIcon("fa-pause");
+      setIconPLay("fa-pause");
       setPlay(false);
     }
   };
@@ -25,6 +26,32 @@ const Controls = (props) => {
     }
   };
 
+  const Volume = (ev) => {
+    const volumeInput = document.querySelector("#volume");
+    const audio = document.querySelector("#audio");
+    if (ev === "mute" || volumeInput.value < 0.1) {
+      if (ev) {
+        if (volumeInput.value === "0") {
+          volumeInput.stepUp(10);
+          setIconeVolume("fa-volume-up");
+        } else {
+          volumeInput.stepDown(10);
+
+          setIconeVolume("fa-volume-mute");
+        }
+      } else {
+        audio.volume = volumeInput.value;
+        setIconeVolume("fa-volume-mute");
+      }
+    } else if (volumeInput.value > 0.5) {
+      audio.volume = volumeInput.value;
+      setIconeVolume("fa-volume-up");
+    } else if (volumeInput.value <= 0.5) {
+      audio.volume = volumeInput.value;
+      setIconeVolume("fa-volume-down");
+    }
+  };
+
   return (
     <div className="sound">
       <div className="title">
@@ -32,11 +59,20 @@ const Controls = (props) => {
         <p className="artist">{props.artist}</p>
       </div>
       <div className="controls">
-        <span className="fas fa-step-backward"></span>
-        <span className={`fas ${icon}`} onClick={Play}></span>
-        <span className="fas fa-step-forward"></span>
+        <span
+          className="fas fa-step-backward"
+          onClick={() => props.prev()}
+        ></span>
+        <span className={`fas ${iconPlay}`} onClick={Play}></span>
+        <span
+          className="fas fa-step-forward"
+          onClick={() => props.next()}
+        ></span>
         <div className="volume">
-          <span className="fas fa-volume-up"></span>
+          <span
+            className={`fas ${iconVolume}`}
+            onClick={() => Volume("mute")}
+          ></span>
           <input
             min="0"
             max="1"
@@ -44,6 +80,7 @@ const Controls = (props) => {
             type="range"
             id="volume"
             defaultValue="1"
+            onChange={() => Volume()}
           />
         </div>
         <span className="icon fas fa-list-ul" onClick={() => OnClick()}></span>
